@@ -1,3 +1,5 @@
+"use strict";
+
 const { ActivityType } = require('discord.js');
 
 module.exports = async (bot) => {
