@@ -1,2 +1,4 @@
-# PDP-Bot
-Bot intended for Project Desert Phoenix Server use
+# Project Desert Phoenix Bot
+
+## About PDP
+Project Desert Phoenix is a faction in the Roblox Game Nuclear Blast Testing Facility.
