@@ -5,9 +5,10 @@ require('dotenv/config');
 const { Client, IntentsBitField } = require('discord.js');
 const { CommandHandler } = require('djs-commander');
 const noblox = require('noblox.js');
+const mongoose = require('mongoose');
 const path = require('path');
 
-const bot = new Client({ intents: [IntentsBitField.Flags.Guilds]})
+const bot = new Client({ intents: [IntentsBitField.Flags.Guilds]});
 
 new CommandHandler({
     client: bot,
@@ -16,13 +17,27 @@ new CommandHandler({
     validationsPath: path.join(__dirname, 'validations')
 });
 
-bot.login(process.env.BOT_TOKEN);
-
 (async () => {
     try {
         await noblox.setCookie(process.env.ROBLOSECURITY);
-        console.log("Logged into GroupRanker_PDP ROBLOX account successfully!");
+        console.log("Logged into the ROBLOX account successfully!");
     } catch (e) {
-        console.log(`Failed to log into GroupRanker_PDP ROBLOX account: ${e}`)
+        console.log(`Failed to log into the ROBLOX account: ${e}`);
+        return;
+    }
+
+    try {
+        await mongoose.connect(process.env.MONGODB_URI);
+        console.log("Logged into the database successfully!");
+    } catch (e) {
+        console.log(`Failed to log into the database: ${e}`);
+        return;
+    }
+
+    try {
+        bot.login(process.env.BOT_TOKEN);
+    } catch (e) {
+        console.log(`Failed to log into the bot account: ${e}`);
+        return;
     }
 })();
