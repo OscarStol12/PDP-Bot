@@ -18,8 +18,9 @@ module.exports = {
         })
         .addFields({
             name: 'Websocket',
-            value: interaction.client.ws.ping + " ms",
+            value: `${interaction.client.ws.ping} ms`,
         })
+        .setTimestamp();
 
         await interaction.reply({embeds: [embed]})
     },

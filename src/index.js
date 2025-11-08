@@ -8,7 +8,9 @@ const noblox = require('noblox.js');
 const mongoose = require('mongoose');
 const path = require('path');
 
-const bot = new Client({ intents: [IntentsBitField.Flags.Guilds]});
+const bot = new Client({ intents: [
+    IntentsBitField.Flags.Guilds,
+]});
 
 new CommandHandler({
     client: bot,
