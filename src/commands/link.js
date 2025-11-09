@@ -14,7 +14,7 @@ module.exports = {
 
         try {
             const query = {
-                discordId: interaction.user.id
+                discordId: interaction.user.id,
             }
 
             const verificationData = await verificationDB.findOne(query);
