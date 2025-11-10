@@ -30,6 +30,7 @@ module.exports = {
     run: async ({ interaction }) => {
         let subCommand = interaction.options.getSubcommand();
         let robloxId = "";
+        let robloxName = "";
 
         if (subCommand === 'discord') {
             try {
@@ -80,11 +81,13 @@ module.exports = {
                 if (isNaN(target)) {
                     // Username was provided
                     robloxId = `${await noblox.getIdFromUsername(target)}`;
+                    robloxName = `${target}`;
                     valid = (robloxId != 'null');
                 } else {
                     // User ID was provided
                     robloxId = `${target}`;
-                    valid = (await noblox.getUsernameFromId(robloxId) != 'null');
+                    robloxName = `${await noblox.getUsernameFromId(target)}`
+                    valid = (robloxName != 'null');
                 }
 
                 if (!valid) {
@@ -153,7 +156,7 @@ module.exports = {
 
             let embed = new EmbedBuilder()
             .setTitle('🏅 Owned Gamepasses')
-            .addFields({name: 'Username', value: await noblox.getUsernameFromId(robloxId)})
+            .addFields({name: 'Username', value: robloxName})
             .addFields({name: 'Gamepasses', value: ownedGamepasses})
             .setColor(Colors.Yellow)
             .setThumbnail(userThumbnail.imageUrl)
