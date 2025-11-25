@@ -1,3 +1,5 @@
+'use strict';
+
 const { Schema, model } = require('mongoose');
 
 const UserVerificationSchema = new Schema({

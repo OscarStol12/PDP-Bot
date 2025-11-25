@@ -2,7 +2,7 @@
 
 const { SlashCommandBuilder, EmbedBuilder, MessageFlags, Colors } = require('discord.js');
 const noblox = require('noblox.js');
-const verificationDB = require('../../../data/UserVerification');
+const verificationDB = require(`${PROJECT_ROOT}/data/UserVerification`);
 
 module.exports = {
     data: new SlashCommandBuilder()

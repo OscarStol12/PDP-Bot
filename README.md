@@ -4,7 +4,7 @@
 Project Desert Phoenix is a faction in the Roblox Game Nuclear Blast Testing Facility.
 
 - [NBTF Server](https://discord.gg/nbtf)
-- [PDP server](https://discord.gg/9wcprp2QMf)
+- [PDP Server](https://discord.gg/9wcprp2QMf)
 
 ## Dependencies
 

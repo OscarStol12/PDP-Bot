@@ -2,7 +2,7 @@
 
 const {SlashCommandBuilder, EmbedBuilder, MessageFlags, Colors} = require('discord.js');
 const noblox = require('noblox.js');
-const verificationDB = require('../../../data/UserVerification');
+const verificationDB = require(`${PROJECT_ROOT}/data/UserVerification`);
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -64,6 +64,7 @@ module.exports = {
                 }
 
                 robloxId = DBEntry.robloxId;
+                robloxName = DBEntry.robloxName;
             } catch (e) {
                 let embed = new EmbedBuilder()
                 .setTitle('❌ Error')
@@ -86,7 +87,7 @@ module.exports = {
                 } else {
                     // User ID was provided
                     robloxId = `${target}`;
-                    robloxName = `${await noblox.getUsernameFromId(target)}`
+                    robloxName = `${await noblox.getUsernameFromId(target)}`;
                     valid = (robloxName != 'null');
                 }
 
@@ -128,7 +129,7 @@ module.exports = {
                 {id: 663031922, name: "Unlock All Teams"},
                 {id: 15704882, name: "Facility Director"},
                 {id: 15704824, name: "Council Executive"},
-                {id: 15048937, name: "Security Supervisor"},
+                {id: 15048937, name: "Security Supervisor"}, 
                 {id: 22122463, name: "Warlord"},
                 {id: 14888642, name: "Military Officer"},
                 {id: 20877486, name: "Government Official"},
