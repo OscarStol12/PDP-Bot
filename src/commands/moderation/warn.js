@@ -1,7 +1,8 @@
 'use strict';
 
-const { EmbedBuilder, SlashCommandBuilder, MessageFlags, Colors } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder, MessageFlags, Colors, Embed } = require('discord.js');
 const warningsDB = require(`${PROJECT_ROOT}/data/UserWarnings`);
+const config = require(`${PROJECT_ROOT}/config.json`);
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -98,6 +99,35 @@ module.exports = {
             } catch (e) {
                 console.log(`Failed to DM ${target.id}: ${e}`);
             }
+
+            // Log the warning
+            const loggingChannel = await interaction.client.channels.fetch(config.channels.logging.moderation);
+            let loggingEmbed = new EmbedBuilder()
+            .setTitle(`🚨 Warning Log`)
+            .addFields({
+                name: `Executor`,
+                value: `<@${executor.id}>`,
+            })
+            .addFields({
+                name: `Target`,
+                value: `<@${target.id}>`
+            })
+            .addFields({
+                name: `Reason`,
+                value: warnReason,
+            })
+            .addFields({
+                name: `Warning ID`,
+                value: `${thisWarningId}`,
+            })
+            .addFields({
+                name: `Timestamp`,
+                value: `<t:${currentTime}:F>`
+            })
+            .setThumbnail(target.displayAvatarURL({ size: 1024 }))
+            .setColor(Colors.Blue)
+            .setTimestamp();
+            await loggingChannel.send({embeds: [loggingEmbed]});
 
             // Finally, output success (if the DM failed, let them know)
             let embed = new EmbedBuilder()
