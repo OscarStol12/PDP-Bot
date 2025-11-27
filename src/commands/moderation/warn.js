@@ -1,6 +1,6 @@
 'use strict';
 
-const { EmbedBuilder, SlashCommandBuilder, MessageFlags, Colors, Embed } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder, MessageFlags, Colors } = require('discord.js');
 const warningsDB = require(`${PROJECT_ROOT}/data/UserWarnings`);
 const config = require(`${PROJECT_ROOT}/config.json`);
 
@@ -37,7 +37,7 @@ module.exports = {
             }
 
             // Check to see if the target member is in the server
-            if (interaction.guild.members.cache.get(target) === undefined) {
+            if (interaction.guild.members.fetch(target) === undefined) {
                 let embed = new EmbedBuilder()
                 .setTitle(`❌ Error`)
                 .setDescription(`<@${target}> is not in this server. You cannot warn users who are currently not in the server. If they are attempting to evade punishment, consider using the /ban command instead.`)
