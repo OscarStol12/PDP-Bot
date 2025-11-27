@@ -20,7 +20,7 @@ module.exports = {
             if (interaction.guild.members.cache.get(target) === undefined) {
                 let embed = new EmbedBuilder()
                 .setTitle(`❌ Error`)
-                .setDescription(`<@${target}> is not in this server. You cannot warn users who are currently not in the server. If they are attempting to evade punishment, consider using the /ban command instead.`)
+                .setDescription(`<@${target}> is not in this server.`)
                 .setColor(Colors.Red)
                 .setTimestamp();
                 await interaction.reply({embeds: [embed], flags: MessageFlags.Ephemeral});
