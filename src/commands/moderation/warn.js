@@ -1,6 +1,6 @@
 'use strict';
 
-const { EmbedBuilder, SlashCommandBuilder, MessageFlags, Colors, InteractionContextType } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder, MessageFlags, Colors } = require('discord.js');
 const warningsDB = require(`${PROJECT_ROOT}/data/UserWarnings`);
 const config = require(`${PROJECT_ROOT}/config.json`);
 
