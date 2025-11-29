@@ -1,12 +1,13 @@
 'use strict';
 
 const { EmbedBuilder, Colors, MessageFlags } = require('discord.js');
+const config = require(`${PROJECT_ROOT}/config.json`);
 
 module.exports = async (interaction, commandObj) => {
     let executor = await interaction.guild.members.fetch(interaction.user.id);
 
     if (commandObj.reqs && commandObj.reqs.isDevOnly) {
-        if (!executor.roles.cache.has('1436395976935084052')) {
+        if (!executor.roles.cache.has(config.roles.developer)) {
             let embed = new EmbedBuilder()
             .setTitle(`⛔ Access Denied`)
             .setDescription(`You do not have developer permissions.`)

@@ -1,12 +1,13 @@
 'use strict';
 
 const { EmbedBuilder, Colors, MessageFlags } = require('discord.js');
+const config = require(`${PROJECT_ROOT}/config.json`);
 
 module.exports = async (interaction, commandObj) => {
     let executor = await interaction.guild.members.fetch(interaction.user.id);
 
     if (commandObj.reqs && commandObj.reqs.isModOnly) {
-        if (!executor.roles.cache.has('1442704253972906064')) {
+        if (!executor.roles.cache.has(config.roles.moderator)) {
             let embed = new EmbedBuilder()
             .setTitle(`⛔ Access Denied`)
             .setDescription(`You do not have moderator permissions.`)
