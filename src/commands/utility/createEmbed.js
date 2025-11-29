@@ -11,6 +11,11 @@ module.exports = {
         .setDescription('The channel to send the embed to.')
         .setRequired(true)
     )
+    .addStringOption(opt => 
+        opt.setName('message')
+        .setDescription(`The text to put outside the embed.`)
+        .setRequired(false)
+    )
     .addStringOption(opt =>
         opt.setName('header')
         .setDescription(`The title of the embed at the very top.`)
@@ -61,8 +66,9 @@ module.exports = {
             const channel = await interaction.client.channels.fetch(interaction.options.get('destination')?.value);
             const header = getIfDefined('header');
             const description = getIfDefined('description');
-            const image = getIfDefined('image')
-            const thumbnail = getIfDefined('thumbnail');
+            const image = interaction.options.getAttachment('image') || undefined;
+            const thumbnail = interaction.options.getAttachment('thumbnail') || undefined;
+            const message = getIfDefined('message');
             let color = getIfDefined('color');
             let rawKeys = getIfDefined('keys');
             let rawValues = getIfDefined('values');
@@ -79,7 +85,7 @@ module.exports = {
                     thumbnail === undefined
                 );
             }
-
+            
             // Helper function to validate that the color parameter given is in valid HEX
             const validateHexColor = () => {
                 return color.length === 7 && /^#[0-9a-f]{6}$/i.test(color);
@@ -224,11 +230,11 @@ module.exports = {
             if (description) constructedEmbed.setDescription(description);
             if (embedFields.length > 0) constructedEmbed.addFields(embedFields);
             if (color) constructedEmbed.setColor(color);
-            if (image) constructedEmbed.setImage(image);
-            if (thumbnail) constructedEmbed.setThumbnail(thumbnail);
+            if (image) constructedEmbed.setImage(image.url);
+            if (thumbnail) constructedEmbed.setThumbnail(thumbnail.url);
             constructedEmbed.setTimestamp();
-            
-            await channel.send({embeds: [constructedEmbed]});
+
+            await channel.send({content: message, embeds: [constructedEmbed]});
 
             let embed = new EmbedBuilder()
             .setTitle(`✅ Success`)
