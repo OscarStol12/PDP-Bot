@@ -13,6 +13,8 @@ global.PROJECT_ROOT = path.join(__dirname, '..');
 
 const bot = new Client({ intents: [
     IntentsBitField.Flags.Guilds,
+    IntentsBitField.Flags.GuildMessages,
+    IntentsBitField.Flags.MessageContent,
 ]});
 
 new CommandHandler({
