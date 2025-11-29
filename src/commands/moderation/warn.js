@@ -25,17 +25,6 @@ module.exports = {
         let warnReason = interaction.options.get('reason')?.value;
 
         try {
-            // Check that the executor has moderator permissions
-            if (!executor.roles.cache.has('1442704253972906064')) {
-                let embed = new EmbedBuilder()
-                .setTitle(`⛔ Access Denied`)
-                .setDescription(`You do not have moderator permissions.`)
-                .setColor(Colors.Red)
-                .setTimestamp();
-                await interaction.reply({embeds: [embed], flags: MessageFlags.Ephemeral});
-                return;
-            }
-
             // Check to see if the target member is in the server
             if (interaction.guild.members.cache.get(target) === undefined) {
                 let embed = new EmbedBuilder()
@@ -148,5 +137,9 @@ module.exports = {
             .setTimestamp();
             await interaction.reply({embeds: [embed], flags: MessageFlags.Ephemeral})
         }
+    },
+
+    reqs: {
+        isModOnly: true,
     },
 }
