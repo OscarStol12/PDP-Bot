@@ -90,7 +90,7 @@ module.exports = {
             }
 
             // Log the warning
-            const loggingChannel = await interaction.client.channels.fetch(config.channels.logging.moderation);
+            const loggingChannel = await interaction.client.channels.fetch(config.channels.logging.moderation[process.env.THIS_ENVIRONMENT]);
             let loggingEmbed = new EmbedBuilder()
             .setTitle(`🚨 Warning Log`)
             .addFields({

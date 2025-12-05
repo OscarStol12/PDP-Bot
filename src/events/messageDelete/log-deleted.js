@@ -4,7 +4,7 @@ const {EmbedBuilder, Colors} = require('discord.js');
 const config = require(`${PROJECT_ROOT}/config.json`);
 
 module.exports = async (msg) => {
-    let channel = await msg.client.channels.fetch(config.channels.logging.message);
+    let channel = await msg.client.channels.fetch(config.channels.logging.message[process.env.THIS_ENVIRONMENT]);
     if (msg.author.bot) return;
     if (msg.system) return;
     let embed = new EmbedBuilder()

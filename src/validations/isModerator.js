@@ -7,7 +7,7 @@ module.exports = async (interaction, commandObj) => {
     let executor = await interaction.guild.members.fetch(interaction.user.id);
 
     if (commandObj.reqs && commandObj.reqs.isModOnly) {
-        if (!executor.roles.cache.has(config.roles.moderator)) {
+        if (!executor.roles.cache.has(config.roles.moderator[process.env.THIS_ENVIRONMENT])) {
             let embed = new EmbedBuilder()
             .setTitle(`⛔ Access Denied`)
             .setDescription(`You do not have moderator permissions.`)

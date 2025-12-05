@@ -7,7 +7,7 @@ module.exports = async (interaction, commandObj) => {
     let executor = await interaction.guild.members.fetch(interaction.user.id);
 
     if (commandObj.reqs && commandObj.reqs.isDevOnly) {
-        if (!executor.roles.cache.has(config.roles.developer)) {
+        if (!executor.roles.cache.has(config.roles.developer[process.env.THIS_ENVIRONMENT])) {
             let embed = new EmbedBuilder()
             .setTitle(`⛔ Access Denied`)
             .setDescription(`You do not have developer permissions.`)
