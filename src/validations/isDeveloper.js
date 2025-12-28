@@ -3,6 +3,10 @@
 const { EmbedBuilder, Colors, MessageFlags } = require('discord.js');
 const config = require(`${PROJECT_ROOT}/config.json`);
 
+/**
+* @param {Object} param0
+* @param {ChatInputCommandInteraction} param0.interaction 
+*/
 module.exports = async (interaction, commandObj) => {
     let executor = await interaction.guild.members.fetch(interaction.user.id);
 

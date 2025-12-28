@@ -1,6 +1,6 @@
 "use strict";
 
-const {SlashCommandBuilder, EmbedBuilder, MessageFlags, Colors} = require('discord.js');
+const {SlashCommandBuilder, EmbedBuilder, MessageFlags, Colors, ChatInputCommandInteraction} = require('discord.js');
 const noblox = require('noblox.js');
 const verificationDB = require(`${PROJECT_ROOT}/data/UserVerification`);
 
@@ -27,6 +27,10 @@ module.exports = {
         )
     ),
 
+    /**
+     * @param {Object} param0
+     * @param {ChatInputCommandInteraction} param0.interaction 
+     */
     run: async ({ interaction }) => {
         let subCommand = interaction.options.getSubcommand();
         let robloxId = "";

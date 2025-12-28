@@ -1,12 +1,16 @@
 "use strict";
 
-const { SlashCommandBuilder, EmbedBuilder, Colors } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, Colors, ChatInputCommandInteraction } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('ping')
     .setDescription('Gets the bot\'s current latency.'),
 
+    /**
+     * @param {Object} param0
+     * @param {ChatInputCommandInteraction} param0.interaction 
+     */
     run: async ({interaction}) => {
         let embed = new EmbedBuilder()
         .setTitle('🏓 Ping')

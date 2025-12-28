@@ -1,6 +1,6 @@
 'use strict';
 
-const { EmbedBuilder, SlashCommandBuilder, MessageFlags, Colors } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder, MessageFlags, Colors, ChatInputCommandInteraction } = require('discord.js');
 const warningsDB = require(`${PROJECT_ROOT}/data/UserWarnings`);
 const config = require(`${PROJECT_ROOT}/config.json`);
 
@@ -19,6 +19,10 @@ module.exports = {
         .setRequired(true)
     ),
 
+    /**
+     * @param {Object} param0
+     * @param {ChatInputCommandInteraction} param0.interaction 
+     */
     run: async ({ interaction }) => {
         let target = interaction.options.get('user')?.value;
         let executor = await interaction.guild.members.fetch(interaction.user.id);

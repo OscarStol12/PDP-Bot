@@ -1,8 +1,12 @@
 "use strict";
 
-const {EmbedBuilder, Colors} = require('discord.js');
+const {EmbedBuilder, Colors, Message} = require('discord.js');
 const config = require(`${PROJECT_ROOT}/config.json`);
 
+/**
+ * @param {Object} param0 
+ * @param {Message} param0.msg
+ */
 module.exports = async (msg) => {
     let channel = await msg.client.channels.fetch(config.channels.logging.message[process.env.THIS_ENVIRONMENT]);
     if (msg.author.bot) return;

@@ -1,6 +1,6 @@
 'use strict';
 
-const { EmbedBuilder, SlashCommandBuilder, Colors, MessageFlags, Message } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder, Colors, MessageFlags, ChatInputCommandInteraction } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -57,6 +57,10 @@ module.exports = {
         .setRequired(false)
     ),
 
+    /**
+     * @param {Object} param0
+     * @param {ChatInputCommandInteraction} param0.interaction 
+     */
     run: async ({ interaction }) => {
         try {
             const getIfDefined = (param) => {

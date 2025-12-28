@@ -19,6 +19,11 @@
             "moderation": {
                 "TESTING": "1446546992372252786",
                 "PRODUCTION": "1437822980569829466"
+            },
+
+            "transcripts": {
+                "TESTING": "1454865762631291037",
+                "PRODUCTION": "1454865876015911063"
             }
         }
     },
@@ -32,6 +37,13 @@
         "moderator": {
             "TESTING": "1446546991088795840",
             "PRODUCTION": "1442704253972906064"
+        }
+    },
+
+    "categories": {
+        "ticketing": {
+            "TESTING": "1454630742612119725",
+            "PRODUCTION": "1454631155629297826"
         }
     }
 }

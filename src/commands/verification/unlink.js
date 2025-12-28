@@ -1,6 +1,6 @@
 "use strict";
 
-const { SlashCommandBuilder, EmbedBuilder, MessageFlags,  Colors, Message, RoleSelectMenuBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, MessageFlags, Colors, ChatInputCommandInteraction } = require('discord.js');
 const verificationDB = require(`${PROJECT_ROOT}/data/UserVerification`);
 
 module.exports = {
@@ -8,6 +8,10 @@ module.exports = {
     .setName('unlink')
     .setDescription('Unlinks your Discord account from a ROBLOX account, if connected.'),
 
+    /**
+     * @param {Object} param0
+     * @param {ChatInputCommandInteraction} param0.interaction 
+     */
     run: async ({ interaction }) => {
         try {
             const query = {

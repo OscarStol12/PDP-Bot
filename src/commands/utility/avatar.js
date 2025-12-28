@@ -1,6 +1,6 @@
 'use strict';
 
-const { SlashCommandBuilder, EmbedBuilder, MessageFlags, Colors } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, MessageFlags, Colors, ChatInputCommandInteraction } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -12,12 +12,16 @@ module.exports = {
         .setRequired(true)
     ),
 
+    /**
+     * @param {Object} param0
+     * @param {ChatInputCommandInteraction} param0.interaction 
+     */
     run: async ({ interaction }) => {
-        let target = interaction.options.get('user')?.value;
+        let target = interaction.options.getUser('user');
 
         try {
             // Check to see if the target member is in the server
-            if (interaction.guild.members.cache.get(target) === undefined) {
+            if (interaction.guild.members.cache.get(target.id) === undefined) {
                 let embed = new EmbedBuilder()
                 .setTitle(`❌ Error`)
                 .setDescription(`<@${target}> is not in this server.`)
@@ -27,7 +31,6 @@ module.exports = {
                 return;
             }
 
-            target = await interaction.guild.members.fetch(target);
             let embed = new EmbedBuilder()
             .setTitle(`📸 User Avatar`)
             .setImage(target.displayAvatarURL({ size: 1024 }))

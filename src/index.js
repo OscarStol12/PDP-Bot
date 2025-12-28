@@ -27,7 +27,7 @@ new CommandHandler({
 (async () => {
     try {
         await noblox.setCookie(process.env.ROBLOSECURITY);
-        console.log("Logged into the ROBLOX account successfully!");
+        console.log(`Logged into ${(await noblox.getAuthenticatedUser()).name} successfully!`);
     } catch (e) {
         console.log(`Failed to log into the ROBLOX account: ${e}`);
         return;
